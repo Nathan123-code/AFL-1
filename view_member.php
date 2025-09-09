@@ -1,10 +1,14 @@
+<?php
+require("controller_member.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=h1, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Membership</title>
 </head>
 
@@ -36,17 +40,29 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
-                                <td>
-                                    <button class="btn btn-warning">Update</button>
-                                    <button class="btn btn-danger">Delete</button>
-                                </td>
-                            </tr>
+                            <?php
+                            $counter = 0;
+                            $allmembers = getAllMembers();
+                            foreach ($allmembers as $index => $member) {
+                                $counter++;
+                                ?>
+
+                                <tr>
+                                    <th scope="row"><?= $counter ?></th>
+                                    <td><?= $member->name ?></td>
+                                    <td><?= $member->phone ?></td>
+                                    <td><?= $member->email ?></td>
+                                    <td><?= $member->note ?></td>
+                                    <td>
+                                        <button class="btn btn-warning">Update</button>
+                                        <a href="">
+                                            <button class="btn btn-danger">Delete</button>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <?php
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </div>

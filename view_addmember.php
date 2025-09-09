@@ -23,25 +23,26 @@
             </div>
             <div class="card-body">
                 <h1>New Member</h1>
-                <form class="row g-3 w-75 mx-auto">
+                <form method="POST" action="controller_member.php" class="row g-3 w-75 mx-auto">
                     <div class="col-12">
                         <label for="inputName" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="inputName" placeholder="Your Name">
+                        <input type="text" class="form-control" name="inputName" placeholder="Your Name">
                     </div>
                     <div class="col-6">
                         <label for="inputPhone" class="form-label">Phone</label>
-                        <input type="text" class="form-control" id="inputPhone" placeholder="123-456-7890">
+                        <input type="text" class="form-control" name="inputPhone" placeholder="123-456-7890">
                     </div>
                     <div class="col-6">
                         <label for="inputEmail4" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="inputEmail4" placeholder="youremail@example.com">
+                        <input type="email" class="form-control" name="inputEmail" placeholder="youremail@example.com">
                     </div>
                     <div class="col-12">
                         <label for="inputNote" class="form-label">Note</label>
-                        <input type="text" class="form-control" id="inputNote" placeholder="Note">
+                        <input type="text" class="form-control" name="inputNote" placeholder="Note">
                     </div>
+                    
                     <div class="col-12">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button name="button_register"type="submit" class="btn btn-primary">Register</button>
                     </div>
                 </form>
             </div>
