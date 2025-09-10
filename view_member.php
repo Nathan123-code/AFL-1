@@ -54,8 +54,10 @@ require("controller_member.php");
                                     <td><?= $member->email ?></td>
                                     <td><?= $member->note ?></td>
                                     <td>
+                                        <a href="view_updatemember.php?updateID=<?=$index?>">
                                         <button class="btn btn-warning">Update</button>
-                                        <a href="">
+                                        </a>
+                                        <a href="controller_member.php?deleteID=<?=$index?>">
                                             <button class="btn btn-danger">Delete</button>
                                         </a>
                                     </td>

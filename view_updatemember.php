@@ -1,3 +1,11 @@
+<?php
+require("controller_member.php");
+if (isset($_GET["updateID"])) {
+    $member_id = $_GET["updateID"];
+    $member = getMemberWithID($member_id);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,27 +31,28 @@
                 </ul>
             </div>
             <div class="card-body">
-                <h1>New Member</h1>
+                <h1>Update Member</h1>
                 <form method="POST" action="controller_member.php" class="row g-3 w-75 mx-auto">
                     <div class="col-12">
                         <label for="inputName" class="form-label">Name</label>
-                        <input type="text" class="form-control" name="inputName">
+                        <input type="text" class="form-control" name="inputName" value="<?=$member-> name ?>">
                     </div>
                     <div class="col-6">
                         <label for="inputPhone" class="form-label">Phone</label>
-                        <input type="text" class="form-control" name="inputPhone">
+                        <input type="text" class="form-control" name="inputPhone" value="<?=$member-> phone ?>">
                     </div>
                     <div class="col-6">
                         <label for="inputEmail4" class="form-label">Email</label>
-                        <input type="email" class="form-control" name="inputEmail">
+                        <input type="email" class="form-control" name="inputEmail" value="<?=$member-> email ?>">
                     </div>
                     <div class="col-12">
                         <label for="inputNote" class="form-label">Note</label>
-                        <input type="text" class="form-control" name="inputNote">
+                        <input type="text" class="form-control" name="inputNote" value="<?=$member-> note ?>">
                     </div>
 
                     <div class="col-12">
-                        <button name="button_register" type="submit" class="btn btn-primary">Register</button>
+                        <input type="hidden" name="input_id" value="<?=$member_id?>">
+                        <button name="button_update" type="submit" class="btn btn-primary">Update</button>
                     </div>
                 </form>
             </div>
