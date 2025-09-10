@@ -18,7 +18,6 @@ function updateMember($memberID){
     $member->phone = $_POST['inputPhone'];
     $member->email = $_POST['inputEmail'];
     $member->note = $_POST['inputNote'];
-    array_push($_SESSION['memberlist'], $member);
 }
 
 function getAllMembers(){
