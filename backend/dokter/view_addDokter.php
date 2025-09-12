@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=h1, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>UC Hospital</title>
+</head>
+
+<body>
+    <div class="container p-3">
+        <div class="card text-center">
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php">Doktor-Specialist</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="view_addDokter.php">New Dokter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="view_addSpecialist.php">New specialist</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <h1>New Dokter</h1>
+                <form method="POST" action="controller_member.php" class="row g-3 w-75 mx-auto">
+                    <div class="col-12">
+                        <label for="inputName" class="form-label">Name</label>
+                        <input type="text" class="form-control" name="inputName">
+                    </div>
+                    <div class="col-6">
+                        <label for="inputPhone" class="form-label">Phone</label>
+                        <input type="text" class="form-control" name="inputPhone">
+                    </div>
+                    <div class="col-6">
+                        <label for="inputEmail4" class="form-label">Email</label>
+                        <input type="email" class="form-control" name="inputEmail">
+                    </div>
+                    <div class="col-12">
+                        <label for="inputNote" class="form-label">Note</label>
+                        <input type="text" class="form-control" name="inputNote">
+                    </div>
+
+                    <div class="col-12">
+                        <button name="button_register" type="submit" class="btn btn-primary">Register</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

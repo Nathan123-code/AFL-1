@@ -1,5 +1,5 @@
 <?php
-require("controller_member.php");
+require("backend/controller.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +9,7 @@ require("controller_member.php");
     <meta name="viewport" content="width=h1, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Membership</title>
+    <title>Hospital</title>
 </head>
 
 <body>
@@ -19,45 +19,47 @@ require("controller_member.php");
                 <div class="card-header">
                     <ul class="nav nav-tabs card-header-tabs">
                         <li class="nav-item">
-                            <a class="nav-link active" href="view_member.php">Member List</a>
+                            <a class="nav-link " href="index.php">Doktor-Specialist</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="view_addmember.php">New Member</a>
+                            <a class="nav-link" href="view_dokter.php">Dokter</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="view_specialist.php">Specialist</a>
                         </li>
                     </ul>
                 </div>
                 <div class="card-body">
-                    <h1>Membership</h1>
+                    <h1>Specialist</h1>
                     <table class="table">
                         <thead>
                             <tr class="table-dark">
                                 <th scope="col">No</th>
                                 <th scope="col">Name</th>
-                                <th scope="col">Phone</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Note</th>
+                                <th scope="col">Tipe</th>
+                                <th scope="col">Gaji</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                             $counter = 0;
-                            $allmembers = getAllMembers();
-                            foreach ($allmembers as $index => $member) {
+                            $allSpecialist = getAllSpecialist();
+                            foreach ($allSpecialist as $index => $Specialist) {
                                 $counter++;
                                 ?>
 
                                 <tr>
                                     <th scope="row"><?= $counter ?></th>
-                                    <td><?= $member->name ?></td>
-                                    <td><?= $member->phone ?></td>
-                                    <td><?= $member->email ?></td>
-                                    <td><?= $member->note ?></td>
+                                    <td><?= $Specialist->name ?></td>
+                                    <td><?= $Specialist->tipe ?></td>
+                                    <td><?= $Specialist->gaji ?></td>
                                     <td>
-                                        <a href="view_updatemember.php?updateID=<?=$index?>">
-                                        <button class="btn btn-warning">Update</button>
+                                        <a href="backend/specialist/view_updateSpecialist.php?updateID=<?= $index ?>">
+                                            <button class="btn btn-warning">Update</button>
                                         </a>
-                                        <a href="controller_member.php?deleteID=<?=$index?>">
+                                        <a href="backend/controller.php?deleteIDSpecialist=<?= $index ?>"
+                                            onclick="return confirm('Jika menghapus specialist, maka specialist yang terkait dengan dokter juga akan terhapus. yakin?')">
                                             <button class="btn btn-danger">Delete</button>
                                         </a>
                                     </td>
@@ -66,7 +68,11 @@ require("controller_member.php");
                             }
                             ?>
                         </tbody>
+
                     </table>
+                    <a href="backend/specialist/view_addSpecialist.php">
+                        <button class="btn btn-dark">Add New Specialist</button>
+                    </a>
                 </div>
             </div>
         </div>

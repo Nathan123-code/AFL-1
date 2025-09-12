@@ -1,6 +1,6 @@
 <?php
 
-class member{
+class dokter{
     public $name;
     public $phone;
     public $email;
