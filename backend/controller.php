@@ -61,7 +61,7 @@ function deleteDoctor($dokterIndex)
 {
     unset($_SESSION['dokterlist'][$dokterIndex]);
 }
-function getAllSpecialist()
+function getAllSpecialist(): mixed
 {
     return $_SESSION['specialList'];
 }
