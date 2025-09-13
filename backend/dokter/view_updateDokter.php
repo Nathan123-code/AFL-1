@@ -67,7 +67,7 @@ $dokter = getDokterrWithID($dokter_id);
                     </div>
                     <div class="col-12">
                         <input type="hidden" name="input_id" value="<?= $dokter_id ?>">
-                        <button name="button_update" type="submit" class="btn btn-primary">Update</button>
+                        <button name="button_updateDokter" type="submit" class="btn btn-primary">Update</button>
                     </div>
                 </form>
             </div>

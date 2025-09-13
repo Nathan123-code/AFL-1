@@ -101,7 +101,7 @@ if (isset($_POST['button_registerDokter'])) {
 }
 //button delete
 if (isset($_GET['deleteIDDokter'])) {
-    deleteDoctor($_GET['deleteID']);
+    deleteDoctor($_GET['deleteIDDokter']);
     header("Location: ../view_dokter.php");
 } else if (isset($_GET["deleteIDSpecialist"])) {
     deleteSpecialist($_GET['deleteIDSpecialist']);
