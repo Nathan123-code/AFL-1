@@ -111,7 +111,7 @@ if (isset($_GET['deleteIDDokter'])) {
 //button_update
 if (isset($_POST['button_updateDokter'])) {
     updateDokter($_POST['input_id']);
-    header("Location: ../../view_dokter.php?success=updated");
+    header("Location: ../view_dokter.php?success=updated");
 } else if (isset($_POST["button_updateSpecialist"])) {
     updateSpecialist($_POST['input_id']);
     header("Location: ../view_specialist.php");
