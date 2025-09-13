@@ -1,9 +1,13 @@
 <?php
 require("../controller.php");
-if (isset($_GET["updateID"])) {
-    $specialist_id = $_GET["updateID"];
-    $specialist = getSpecialistWithID($specialist_id);
+//error handling kalo semisal updateID ga ada atau ga valid
+if (!isset($_GET["updateID"]) || !isset($_SESSION['specialList'][$_GET["updateID"]])) {
+    header("Location: ../../view_specialist.php?error=invalid_id");
+    exit;
 }
+
+$specialist_id = $_GET["updateID"];
+$specialist = getSpecialistWithID($specialist_id);
 ?>
 
 <!DOCTYPE html>

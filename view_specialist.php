@@ -7,12 +7,18 @@ require("backend/controller.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=h1, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Hospital</title>
 </head>
 
 <body>
+    <?php if (isset($_GET['error']) && $_GET['error'] === 'invalid_id'): ?>
+        <div class="alert alert-danger text-center">
+            data specialist tidak ditemukan.
+        </div>
+    <?php endif; ?>
     <div class="container p-3">
         <div class="container p-3">
             <div class="card text-center">
@@ -53,13 +59,13 @@ require("backend/controller.php");
                                     <th scope="row"><?= $counter ?></th>
                                     <td><?= $Specialist->name ?></td>
                                     <td><?= $Specialist->tipe ?></td>
-                                    <td><?= $Specialist->gaji ?></td>
+                                    <td>Rp<?= $Specialist->gaji ?></td>
                                     <td>
                                         <a href="backend/specialist/view_updateSpecialist.php?updateID=<?= $index ?>">
                                             <button class="btn btn-warning">Update</button>
                                         </a>
                                         <a href="backend/controller.php?deleteIDSpecialist=<?= $index ?>"
-                                            onclick="return confirm('Jika menghapus specialist, maka specialist yang terkait dengan dokter juga akan terhapus. yakin?')">
+                                            onclick="return confirm('Jika menghapus specialist, maka dokter yang terkait dengan specialist ini juga akan terhapus. yakin?')">
                                             <button class="btn btn-danger">Delete</button>
                                         </a>
                                     </td>
@@ -78,5 +84,12 @@ require("backend/controller.php");
         </div>
     </div>
 </body>
+<script>
+    $(document).ready(function () {
+        setTimeout(function () {
+            $(".alert").fadeOut("slow");
+        }, 3000); // 3 seconds
+    });
+</script>
 
 </html>

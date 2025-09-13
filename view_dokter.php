@@ -1,6 +1,13 @@
 <?php
 require("backend/controller.php");
 ?>
+
+<?php if (isset($_GET['success']) && $_GET['success'] === 'updated'): ?>
+    <div class="alert alert-success text-center">
+        Dokter telah di update!
+    </div>
+<?php endif; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -57,10 +64,11 @@ require("backend/controller.php");
                                     <td><?= $member->email ?></td>
                                     <td><?= $member->note ?></td>
                                     <td>
-                                        <a href="view_updatemember.php?updateID=<?= $index ?>">
+                                        <a href="backend/dokter/view_updateDokter.php?updateID=<?= $index ?>">
                                             <button class="btn btn-warning">Update</button>
                                         </a>
-                                        <a href="controller_member.php?deleteID=<?= $index ?>">
+                                        <a href="backend/controller.php?deleteIDDokter=<?= $index ?>"
+                                            onclick="return confirm('Delete this doctor?')">
                                             <button class="btn btn-danger">Delete</button>
                                         </a>
                                     </td>
@@ -70,8 +78,8 @@ require("backend/controller.php");
                             ?>
                         </tbody>
                     </table>
-                    <a href="backend/specialist/view_addDokter.php">
-                        <button class="btn btn-dark">Add New Specialist</button>
+                    <a href="backend/dokter/view_addDokter.php">
+                        <button class="btn btn-dark">Add New Dokter</button>
                     </a>
                 </div>
             </div>

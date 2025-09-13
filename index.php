@@ -21,12 +21,12 @@ require("backend/controller.php");
                         <li class="nav-item">
                             <a class="nav-link active" href="index.php">Doktor-Specialist</a>
                         </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="view_dokter.php">Dokter</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="view_specialist.php">Specialist</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="view_dokter.php">Dokter</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="view_specialist.php">Specialist</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="card-body">
@@ -35,40 +35,41 @@ require("backend/controller.php");
                     <table class="table">
                         <thead>
                             <tr class="table-dark">
-                                <th scope="col">No</th>
-                                <th scope="col">Dokter</th>
-                                <th scope="col">Specialist</th>
-                                <th scope="col">Note</th>                            </tr>
+                                <th>No</th>
+                                <th>Doctor Name</th>
+                                <th>Specialist</th>
+                                <th>Type</th>
+                            </tr>
                         </thead>
                         <tbody>
                             <?php
                             $counter = 0;
-                            $allDokter = getAllDoctors();
-                            $allSpecialist = getAllSpecialist();
-                            foreach ($allDokter as $index => $member) {
-                                $counter++;
-                                ?>
-
+                            if (!empty($_SESSION['dokterlist'])):
+                                foreach ($_SESSION['dokterlist'] as $index => $doctor):
+                                    $counter++;
+                            ?>
                                 <tr>
                                     <th scope="row"><?= $counter ?></th>
-                                    <td><?= $member->name ?></td>
-                                    <td><?= $member->phone ?></td>
-                                    <td><?= $member->email ?></td>
-                                    <td><?= $member->note ?></td>
-                                    <td>
-                                        <a href="view_updatemember.php?updateID=<?=$index?>">
-                                        <button class="btn btn-warning">Update</button>
-                                        </a>
-                                        <a href="controller_member.php?deleteID=<?=$index?>">
-                                            <button class="btn btn-danger">Delete</button>
-                                        </a>
-                                    </td>
+                                    <td><?= htmlspecialchars($doctor->name) ?></td>
+                                    <?php if (isset($_SESSION['specialList'][$doctor->specialist_id])): ?>
+                                        <?php $spec = $_SESSION['specialList'][$doctor->specialist_id]; ?>
+                                        <td><?= htmlspecialchars($spec->name) ?></td>
+                                        <td><?= htmlspecialchars($spec->tipe) ?></td>
+                                    <?php else: ?>
+                                        <td colspan="2" class="text-danger text-center">Specialist Deleted</td>
+                                    <?php endif; ?>
                                 </tr>
-                                <?php
-                            }
+                            <?php
+                                endforeach;
+                            else:
                             ?>
+                                <tr>
+                                    <td colspan="4" class="text-center text-muted">No doctors available</td>
+                                </tr>
+                            <?php endif; ?>
                         </tbody>
                     </table>
+
                 </div>
             </div>
         </div>

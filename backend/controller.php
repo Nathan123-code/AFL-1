@@ -9,24 +9,30 @@ if (!isset($_SESSION["dokterlist"])) {
 if (!isset($_SESSION["specialList"])) {
     $_SESSION['specialList'] = array();
 }
-function createDokter()
-{
-    $dokter = new dokter();
-    $dokter->name = $_POST['inputName'];
-    $dokter->phone = $_POST['inputPhone'];
-    $dokter->email = $_POST['inputEmail'];
-    $dokter->note = $_POST['inputNote'];
-    array_push($_SESSION['dokterlist'], $dokter);
+
+function createDokter() {
+    $doctor = new Dokter(
+        $_POST['inputName'],
+        $_POST['inputPhone'],
+        $_POST['inputEmail'],
+        $_POST['inputNote'] ?? "No Note",
+        $_POST['specialist_id'] 
+    );
+    $_SESSION['dokterlist'][] = $doctor;
 }
-function updateDokter($dokterID)
-{
-    $dokter = $_SESSION['dokterlist'][$dokterID];
-    $dokter->name = $_POST['inputName'];
-    $dokter->phone = $_POST['inputPhone'];
-    $dokter->email = $_POST['inputEmail'];
-    $dokter->note = $_POST['inputNote'];
+function updateDokter($id) {
+    if (isset($_SESSION['dokterlist'][$id])) {
+        $doctor = $_SESSION['dokterlist'][$id];
+        $doctor->name = $_POST['inputName'];
+        $doctor->phone = $_POST['inputPhone'];
+        $doctor->email = $_POST['inputEmail'];
+        $doctor->note = !empty($_POST['inputNote']) ? $_POST['inputNote'] : "No Note";
+        $doctor->specialist_id = $_POST['specialist_id'];
+    }
 }
-function createSpecialist() {
+
+function createSpecialist()
+{
     $specialist = new specialist(
         trim($_POST['inputName'] ?? ''),
         trim($_POST['inputTipe'] ?? ''),
@@ -43,6 +49,10 @@ function updateSpecialist($specialistID)
     $specialist->tipe = $_POST['inputTipe'];
     $specialist->gaji = $_POST['inputGaji'];
 }
+
+
+
+//getter deleter
 function getAllDoctors()
 {
     return $_SESSION['dokterlist'];
@@ -55,18 +65,33 @@ function getAllSpecialist()
 {
     return $_SESSION['specialList'];
 }
-function deleteSpecialist($specialistIndex)
-{
-    unset($_SESSION['specialList'][$specialistIndex]);
+function deleteSpecialist($specialist_id) {
+    
+    foreach ($_SESSION['dokterlist'] as $doctor_id => $doctor) {
+        if ($doctor->specialist_id == $specialist_id) {
+            unset($_SESSION['dokterlist'][$doctor_id]);
+        }
+    }
+
+    unset($_SESSION['specialList'][$specialist_id]);
 }
-function getDoctorWithID($dokterID)
+function getDokterrWithID($dokterID)
 {
-    return $_SESSION['dokterlist'][$dokterID];
+    return $_SESSION['dokterlist'][$dokterID] ?? null;
 }
-function getSpecialistWithID($specialistID) {
+function getSpecialistWithID($specialistID)
+{
     return $_SESSION['specialList'][$specialistID] ?? null;
 }
 
+
+
+
+
+
+
+
+//button register rek
 if (isset($_POST['button_registerDokter'])) {
     createDokter();
     header("Location: ../view_dokter.php");
@@ -74,7 +99,7 @@ if (isset($_POST['button_registerDokter'])) {
     createSpecialist();
     header("Location: ../view_specialist.php");
 }
-
+//button delete
 if (isset($_GET['deleteIDDokter'])) {
     deleteDoctor($_GET['deleteID']);
     header("Location: ../view_dokter.php");
@@ -86,7 +111,7 @@ if (isset($_GET['deleteIDDokter'])) {
 //button_update
 if (isset($_POST['button_updateDokter'])) {
     updateDokter($_POST['input_id']);
-    header("Location: ../view_dokter.php");
+    header("Location: ../../view_dokter.php?success=updated");
 } else if (isset($_POST["button_updateSpecialist"])) {
     updateSpecialist($_POST['input_id']);
     header("Location: ../view_specialist.php");
